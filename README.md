@@ -25,10 +25,10 @@ Ce projet est un outil pour gérer des mots de passe sécurisés. Il inclut les 
 ## Organisation des fichiers
 
 - main.py : Point d'entrée du programme, gère les interactions avec l'utilisateur.
-- password_generator.py : Classe pour générer des mots de passe et calculer leur entropie.
-- password_tester.py : Classe pour tester la force d'un mot de passe.
-- passphrase_generator.py : Classe pour générer des passphrases sécurisées.
-- test_password_tool.py : Tests unitaires pour valider les fonctionnalités du programme.
+- generateur_mdp.py : Classe pour générer des mots de passe et calculer leur entropie.
+- testeur_mdp.py : Classe pour tester la force d'un mot de passe.
+- generateur_passphrase.py : Classe pour générer des passphrases sécurisées.
+- testeur_unitaire.py : Tests unitaires pour valider les fonctionnalités du programme.
 
 
 ## Instructions pour exécuter le programme

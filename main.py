@@ -1,6 +1,6 @@
-from password_generator import PasswordGenerator
-from password_tester import PasswordTester
-from passphrase_generator import PassphraseGenerator
+from generateur_mdp import GenerateurDeMotDePasse
+from testeur_mdp import TesteurDeMotDePasse
+from generateur_passphrase import GenerateurDePassphrase
 
 def main():
     print("Bienvenue dans l'outil de génération et de test de mots de passe !\n")
@@ -12,46 +12,46 @@ def main():
         print("3. Générer une passphrase")
         print("4. Quitter")
         
-        choice = input("Votre choix : ").strip()
+        choix = input("Votre choix : ").strip()
         
-        if choice == "1":
+        if choix == "1":
             # Génération de mot de passe
             print("\n--- Génération de mot de passe ---")
-            min_length = int(input("Nombre de caractères minuscules : "))
-            maj_length = int(input("Nombre de caractères majuscules : "))
-            digit_length = int(input("Nombre de chiffres : "))
-            special_length = int(input("Nombre de caractères spéciaux : "))
+            nb_min = int(input("Nombre de caractères minuscules : "))
+            nb_maj = int(input("Nombre de caractères majuscules : "))
+            nb_chiffres = int(input("Nombre de chiffres : "))
+            nb_speciaux = int(input("Nombre de caractères spéciaux : "))
             
-            generator = PasswordGenerator() # Création d'une instance de PasswordGenerator
-            password = generator.generate_password(min_length, maj_length, digit_length, special_length) # Génération du mot de passe
-            entropie = generator.calculate_entropy(password) # Calcul de l'entropie
-            strength = PasswordTester.determine_strength(entropie) # Détermination de la force du mot de passe
+            generateur = GenerateurDeMotDePasse()  # Création d'une instance de GenerateurDeMotDePasse
+            mot_de_passe = generateur.generer_mot_de_passe(nb_min, nb_maj, nb_chiffres, nb_speciaux)  # Génération du mot de passe
+            entropie = generateur.calculer_entropie(mot_de_passe)  # Calcul de l'entropie
+            force = TesteurDeMotDePasse.determiner_force(entropie)  # Détermination de la force du mot de passe
             
-            print(f"Mot de passe généré : {password}")
+            print(f"Mot de passe généré : {mot_de_passe}")
             print(f"Entropie : {entropie:.2f} bits")
-            print(f"Force : {strength}\n")
+            print(f"Force : {force}\n")
         
-        elif choice == "2":
+        elif choix == "2":
             # Test de la force d'un mot de passe
             print("\n--- Test de force de mot de passe ---")
-            password = input("Entrez le mot de passe à tester : ")
-            tester = PasswordTester()
-            entropie = tester.calculate_entropy(password)
-            strength = tester.determine_strength(entropie)
+            mot_de_passe = input("Entrez le mot de passe à tester : ")
+            testeur = TesteurDeMotDePasse()
+            entropie = testeur.calculer_entropie(mot_de_passe)  # Calcul de l'entropie
+            force = testeur.determiner_force(entropie)  # Détermination de la force
             
             print(f"Entropie : {entropie:.2f} bits")
-            print(f"Force : {strength}\n")
+            print(f"Force : {force}\n")
         
-        elif choice == "3":
+        elif choix == "3":
             # Génération de passphrase
             print("\n--- Génération de passphrase ---")
-            num_words = int(input("Nombre de mots dans la passphrase : "))
-            passphrase_gen = PassphraseGenerator()
-            passphrase = passphrase_gen.generate_passphrase(num_words)
+            nb_mots = int(input("Nombre de mots dans la passphrase : "))
+            generateur_phrase = GenerateurDePassphrase()
+            passphrase = generateur_phrase.generer_passphrase(nb_mots)
             
             print(f"Passphrase générée : {passphrase}\n")
         
-        elif choice == "4":
+        elif choix == "4":
             # Quitter le programme
             print("Au revoir !")
             break
